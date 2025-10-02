@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace labb_2
+namespace labb_2;
+
+internal class Player
 {
-    internal class Player
-    {
-    }
 }
