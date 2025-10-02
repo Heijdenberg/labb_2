@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace labb_2
+namespace labb_2;
+
+internal class GameLoop
 {
-    internal class GameLoop
+    public void turn()
     {
+
     }
 }
