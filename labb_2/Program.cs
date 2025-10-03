@@ -1,10 +1,19 @@
-﻿namespace labb_2;
+﻿using System.Security.Cryptography;
+
+namespace labb_2;
 
 internal class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Hello, World!");
+        while (true)
+        {
+            LevelData level = new LevelData();
+            Console.WriteLine(level.ToString());
+            Console.ReadLine();
+            Console.Clear();
+        }
+
     }
 }
 
