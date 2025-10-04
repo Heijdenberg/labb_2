@@ -11,4 +11,10 @@ internal class Wall : LevelElement
 {
     public bool HasBeenSeen { get; set; }
     public Wall(int y, int x) : base('#', ConsoleColor.Gray, y, x){}
+
+    public override void Draw()
+    {
+        Console.BackgroundColor = SpriteColor;
+        base.Draw();
+    }
 }

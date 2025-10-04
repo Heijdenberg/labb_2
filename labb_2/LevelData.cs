@@ -1,7 +1,9 @@
-﻿using System;
+﻿using labb_2.Elements;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,78 +11,95 @@ namespace labb_2;
 
 internal class LevelData
 {
-    private char[,] level;
-    public int[] levelSize = new int[2];
-    private string path = Path.Combine("Levels", "Level1.txt");
-    public LevelData()
+    private List<LevelElement> _elements = new();
+    private int _levelWidth =  0;
+    public int LevelHeight { get; set; }
+    public int LevelWidth 
     {
-        levelSize = GetLevelSize();
-        level = LoadLevel();
+        get
+        {
+            return _levelWidth;
+        } 
+        set
+        { 
+            if(value> _levelWidth)
+            {
+                _levelWidth = value;
+            }
+        }
+    }
+    public List<LevelElement> Elements
+    {
+        get
+        {
+            return _elements;
+        }
     }
 
-    private int[] GetLevelSize()
+    public int[] Load(string path)
     {
-        int y = 0;
-        int x = 0;
-
+        int[] startPosition = [0, 0];
         using (StreamReader reader = new StreamReader(path))
         {
             string line;
 
-            while ((line = reader.ReadLine()) != null)
+            for (int i = 0; (line = reader.ReadLine()) != null; i++)
             {
-                y++;
-                int length;
-                string trimmedLine = line.TrimEnd();
-                if ((length = trimmedLine.Length) > x)
+                for (int ii = 0; ii < line.Length; ii++)
                 {
-                    x = length;
+                    switch (line[ii])
+                    {
+                        case '@':
+                            startPosition = [i, ii];
+                            break;
+                        case '#':
+                            _elements.Add(new Wall(i, ii));
+                            LevelWidth = ii;
+                            LevelHeight = i;
+                            break;
+                        case 'r':
+                            _elements.Add(new Rat(i, ii));
+                            break;
+                        case 's':
+                            _elements.Add(new Snake(i, ii));
+                            break;
+                    }
                 }
             }
         }
-
-        return [y,x];
+        return startPosition;
     }
-    private char[,] LoadLevel()
+
+    public LevelElement GetElementAtPosition(int y, int x)
     {
-        int y = levelSize[0];
-        int x = levelSize[1];
+        LevelElement? inhabitant = null;
 
-        char[,] level = new char[y, x];
 
-        using (StreamReader reader = new StreamReader(path))
+        for (int i = 0; i < Elements.Count; i++)
         {
-            string line;
-            int row = 0;
-
-            while ((line = reader.ReadLine()) != null)
+            if (Elements[i].Position.Y==y && Elements[i].Position.X == x)
             {
-                for (int i = 0; i < x; i++)
-                {
-                    level[row,i] = line[i];
-                }
-
-                row++;
+                inhabitant = Elements[i];
             }
         }
-
-        return level;
+        return inhabitant;
     }
-    public override string ToString()
+    public int GetElementIndexAtPosition(int y, int x)
     {
-        string levelString = string.Empty;
+        int index=-1;
 
-        for (int i = 0; i < levelSize[0]; i++)
+        for (int i = 0; i < Elements.Count; i++)
         {
-            for (int ii = 0; ii < levelSize[1]; ii++)
+            if (Elements[i].Position.Y == y && Elements[i].Position.X == x)
             {
-                char currentChar = level[i, ii];
-                levelString += currentChar;
-                levelString += " ";
+                index = i;
             }
-            levelString += Environment.NewLine;
         }
-
-        return levelString;
+        return index;
+    }
+    public void removeElement(int y, int x)
+    {
+        int index = GetElementIndexAtPosition(y, x);
+        Elements.RemoveAt(index);
     }
 }

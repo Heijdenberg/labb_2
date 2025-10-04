@@ -19,5 +19,11 @@ internal abstract class LevelElement
         Position = new Position(y, x);
     }
 
-    public void Draw() { }
+    public virtual void Draw()
+    {
+        Console.SetCursorPosition(Position.Y, Position.X);
+        Console.ForegroundColor = SpriteColor;
+        Console.Write(Sprite);
+        Console.ResetColor();
+    }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace labb_2;
 
-internal struct Position
+internal class Position
 {
     public int Y { get; set; }
     public int X { get; set; }
