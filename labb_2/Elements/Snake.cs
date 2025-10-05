@@ -1,6 +1,9 @@
-﻿using System;
+﻿using labb_2.Interfaces;
+using labb_2.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,8 +20,76 @@ internal class Snake : Enemy
             color: ConsoleColor.Green,
             y, x)
     { }
-    public override void Update()
+    public override void Update(LevelData levelData, MessageLog messageLog, Player player)
     {
+        int y = Position.Y;
+        int x = Position.X;
 
+        int yDif = player.Position.Y - y;
+        int xDif = player.Position.X - x;
+
+        double distance = Math.Sqrt(Math.Pow(xDif, 2) + Math.Pow(yDif, 2));
+
+        if (distance <= 1.5)
+        {
+            if (Math.Abs(yDif) == Math.Abs(xDif))
+            {
+                int randomDirection = GameRandom.Random.Next(0,2);
+                if (randomDirection == 0)
+                {
+                    if (yDif > 0.0)
+                    {
+                        y--;
+                    }
+                    else
+                    {
+                        y++;
+                    }
+                }
+                else
+                {
+                    if (xDif > 0.0)
+                    {
+                        x--;
+                    }
+                    else
+                    {
+                        x++;
+                    }
+                }
+            }
+            else if (Math.Abs(yDif) > Math.Abs(xDif))
+            {
+                if (yDif > 0.0)
+                {
+                    y--;
+                }
+                else
+                {
+                    y++;
+                }
+            }
+            else
+            {
+                if (xDif > 0.0)
+                {
+                    x--;
+                }
+                else
+                {
+                    x++;
+                }
+            }
+        }
+
+        LevelElement nextPostionInhabitant = levelData.GetElementAtPosition(y, x);
+
+        if (nextPostionInhabitant == null)
+        {
+            Position oldPos = new Position(Position.Y, Position.X);
+            Position.Y = y;
+            Position.X = x;
+            Draw(oldPos);
+        }
     }
 }

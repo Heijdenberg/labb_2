@@ -20,7 +20,7 @@ internal class Player : LevelElement, ICombatant
     public Player(int[] startPosition)
         : base(
             sprite: '@',
-            spriteColor: ConsoleColor.Red,
+            spriteColor: ConsoleColor.Cyan,
             startPosition[0], startPosition[1])
     {
         Name = "Player";
@@ -34,7 +34,7 @@ internal class Player : LevelElement, ICombatant
         GameOverScreen gameOver = new();
         gameOver.GameOver(levelData.LevelHeight, levelData.LevelWidth);
     }
-    public void Move(ConsoleKey direction, LevelData levelData, MessageLog messageLog)
+    public void Update(ConsoleKey direction, LevelData levelData, MessageLog messageLog)
     {
         int y = Position.Y;
         int x = Position.X;
@@ -59,8 +59,10 @@ internal class Player : LevelElement, ICombatant
 
         if (nextPostionInhabitant == null)
         {
+            Position oldPos = new Position(Position.Y, Position.X);
             Position.Y = y;
             Position.X = x;
+            Draw(oldPos);
         }
         else if (nextPostionInhabitant is Enemy)
         {

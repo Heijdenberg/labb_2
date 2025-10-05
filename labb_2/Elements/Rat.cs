@@ -1,4 +1,6 @@
-﻿using System;
+﻿using labb_2.Interfaces;
+using labb_2.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +19,46 @@ internal class Rat : Enemy
             color: ConsoleColor.Red,
             y, x)
     {}
-    public override void Update()
-    {
 
+    public override void Update(LevelData levelData, MessageLog messageLog, Player player)
+    {
+        int y = Position.Y;
+        int x = Position.X;
+        int direction = GameRandom.Random.Next(0, 4);
+
+        if (direction == 0)
+        {
+            x--;
+        }
+        else if (direction == 1)
+        {
+            y--;
+        }
+        else if (direction == 2)
+        {
+            x++;
+        }
+        else if (direction == 3)
+        {
+            y++;
+        }
+
+        LevelElement nextPostionInhabitant = levelData.GetElementAtPosition(y, x);
+
+        if (nextPostionInhabitant == null && (y != player.Position.Y || x != player.Position.X))
+        {
+            Position oldPos = new Position(Position.Y, Position.X);
+            Position.Y = y;
+            Position.X = x;
+            Draw(oldPos);
+        }
+        else if (y == player.Position.Y && x == player.Position.X)
+        {
+            messageLog.AddMassage($"{Name} attacked player!");
+            Combat combat = new(this, (ICombatant)player);
+            combat.Battle(messageLog, levelData);
+        }
     }
 }
+
+

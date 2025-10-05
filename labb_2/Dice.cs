@@ -8,8 +8,6 @@ namespace labb_2;
 
 internal class Dice
 {
-    private static readonly Random random = new Random();
-
     private int numberOfDice;
     private int sidesPerDice;
     private int modifier;
@@ -27,7 +25,7 @@ internal class Dice
 
         for (int i = 0; i < numberOfDice; i++)
         {
-            result += random.Next(1, sidesPerDice+1);
+            result += GameRandom.Random.Next(1, sidesPerDice+1);
         }
 
         result += modifier;

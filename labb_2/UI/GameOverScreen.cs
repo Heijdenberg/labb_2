@@ -10,6 +10,7 @@ namespace labb_2.UI
     {
         public void GameOver(int height, int width)
         {
+            Console.Clear();
             string emptyLine = string.Concat(Enumerable.Repeat("■ ", width/2));
             string gameOver = "Game Over!!";
             Console.ForegroundColor = ConsoleColor.Red;

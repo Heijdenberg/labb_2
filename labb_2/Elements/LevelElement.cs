@@ -26,4 +26,10 @@ internal abstract class LevelElement
         Console.Write(Sprite);
         Console.ResetColor();
     }
+    public virtual void Draw(Position oldPos)
+    {
+        Console.SetCursorPosition(oldPos.X, oldPos.Y);
+        Console.Write(' ');
+        Draw();
+    }
 }

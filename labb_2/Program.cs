@@ -1,5 +1,7 @@
 ﻿using labb_2.UI;
+using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
 namespace labb_2;
@@ -17,19 +19,8 @@ internal class Program
         MessageLog messageLog = new(levelData.LevelHeight, levelData.LevelWidth);
         Renderer renderer = new(levelData, player, messageLog);
 
-        while (true)
-        {
-            renderer.DrawAll();
-            ConsoleKey thePressedKey = Console.ReadKey().Key;
-            player.Move(thePressedKey, levelData, messageLog);
-            Console.Clear();
-
-            if (thePressedKey == ConsoleKey.Escape || player.HitPoints<=0)
-            {
-                GameOverScreen gameOverScreen = new();
-                gameOverScreen.GameOver(levelData.LevelHeight, levelData.LevelWidth);
-            }
-        }
+        GameLoop gameLoop = new(levelData, player, messageLog, renderer);
+        gameLoop.StartLoop();
     }
 }
 

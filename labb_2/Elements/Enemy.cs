@@ -1,4 +1,5 @@
 ﻿using labb_2.Interfaces;
+using labb_2.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ internal abstract class Enemy: LevelElement, ICombatant
         AttackDice = attackDice;
         DefenceDice = defenceDice;
     }
-    public abstract void Update();
+    public abstract void Update(LevelData levelData, MessageLog messageLog, Player player);
 
     public void Death(LevelData leveldata)
     {
