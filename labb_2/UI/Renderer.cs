@@ -13,13 +13,15 @@ namespace labb_2.UI
         private LevelData _levelData;
         private Player _player;
         private MessageLog _messageLog;
+        private Sidebar _sidebar;
 
-        public Renderer(LevelData levelData, Player player, MessageLog messageLog)
+        public Renderer(LevelData levelData, Player player, MessageLog messageLog, Sidebar sidebar)
         {
 
             _levelData = levelData;
             _player = player;
             _messageLog = messageLog;
+            _sidebar = sidebar;
         }
 
         public void DrawAll()
@@ -31,6 +33,7 @@ namespace labb_2.UI
 
             _player.Draw();
             _messageLog.Draw();
+            _sidebar.Draw();
         }
     }
 }

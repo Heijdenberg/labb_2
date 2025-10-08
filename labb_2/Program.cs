@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace labb_2;
 
@@ -11,15 +12,18 @@ internal class Program
     static void Main()
     {
         Console.CursorVisible = false;
+        Console.OutputEncoding = Encoding.UTF8;
 
         string path = Path.Combine("Levels", "Level1.txt");
         LevelData levelData = new LevelData();
         int[] startPosition = levelData.Load(path);
         Player player = new(startPosition);
         MessageLog messageLog = new(levelData.LevelHeight, levelData.LevelWidth);
-        Renderer renderer = new(levelData, player, messageLog);
-
+        Sidebar sidebar = new(levelData.LevelHeight, levelData.LevelWidth, player);
+        Renderer renderer = new(levelData, player, messageLog, sidebar);
         GameLoop gameLoop = new(levelData, player, messageLog, renderer);
+
+        Console.BufferWidth += levelData.LevelWidth + sidebar.Width;
         gameLoop.StartLoop();
     }
 }
