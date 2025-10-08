@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace labb_2;
 
@@ -101,5 +102,40 @@ internal class LevelData
     {
         int index = GetElementIndexAtPosition(y, x);
         Elements.RemoveAt(index);
+    }
+
+    public void SolidWalls()
+    {
+        LevelElement[,] walls = new LevelElement[LevelHeight+100, LevelWidth+100];
+
+        foreach (LevelElement element in _elements.Where(e => e is Wall).Cast<Wall>())
+        {
+            Wall wall = (Wall)element;
+            walls[wall.Position.Y, wall.Position.X] = wall;
+        }
+
+        foreach (LevelElement element in walls)
+        {
+            if(element is not null)
+            {
+                int wallType = 0;
+                Wall wall = (Wall)element;
+                int y = wall.Position.Y;
+                int x = wall.Position.X;
+
+                int H = walls.GetLength(0);
+                int W = walls.GetLength(1);
+
+                bool InBounds(int yy, int xx) => yy >= 0 && yy < H && xx >= 0 && xx < W;
+                bool IsWall(int yy, int xx) => InBounds(yy, xx) && walls[yy, xx] is not null;
+
+                if (IsWall(y - 1, x)) wallType |= 1;
+                if (IsWall(y, x + 1)) wallType |= 2;
+                if (IsWall(y + 1, x)) wallType |= 4;
+                if (IsWall(y, x - 1)) wallType |= 8;
+
+                wall.SetWall(wallType);
+            }
+        }
     }
 }

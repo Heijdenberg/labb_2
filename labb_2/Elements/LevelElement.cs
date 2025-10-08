@@ -8,7 +8,7 @@ namespace labb_2.Elements;
 
 internal abstract class LevelElement
 {
-    protected char Sprite { get; }
+    public char Sprite { get; set; }
     public Position Position { get; set; }
     public ConsoleColor SpriteColor { get; }
 

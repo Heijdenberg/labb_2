@@ -24,6 +24,7 @@ internal class Program
         GameLoop gameLoop = new(levelData, player, messageLog, renderer);
 
         Console.BufferWidth += levelData.LevelWidth + sidebar.Width;
+        levelData.SolidWalls();
         gameLoop.StartLoop();
     }
 }
