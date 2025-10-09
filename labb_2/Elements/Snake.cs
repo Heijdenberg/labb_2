@@ -85,10 +85,9 @@ internal class Snake : Enemy
 
         if (nextPostionInhabitant == null)
         {
-            Position oldPos = new Position(Position.Y, Position.X);
+            Renderer.EraseAtCord(Position);
             Position.Y = y;
             Position.X = x;
-            Renderer.EraseAtCord(oldPos);
         }
     }
 }
