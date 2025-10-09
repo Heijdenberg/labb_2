@@ -1,4 +1,5 @@
-﻿using System;
+﻿using labb_2.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,11 +26,5 @@ internal abstract class LevelElement
         Console.ForegroundColor = SpriteColor;
         Console.Write(Sprite);
         Console.ResetColor();
-    }
-    public virtual void Draw(Position oldPos)
-    {
-        Console.SetCursorPosition(oldPos.X, oldPos.Y);
-        Console.Write(' ');
-        Draw();
     }
 }

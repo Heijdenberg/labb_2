@@ -1,5 +1,6 @@
 ﻿using labb_2.Interfaces;
 using labb_2.UI;
+using labb_2.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,7 @@ internal class Snake : Enemy
         int yDif = player.Position.Y - y;
         int xDif = player.Position.X - x;
 
-        double distance = Math.Sqrt(Math.Pow(xDif, 2) + Math.Pow(yDif, 2));
-
-        if (distance <= 1.5)
+        if (GameMath.IsWithinRange(Position, player.Position, 2.0))
         {
             if (Math.Abs(yDif) == Math.Abs(xDif))
             {
@@ -89,7 +88,7 @@ internal class Snake : Enemy
             Position oldPos = new Position(Position.Y, Position.X);
             Position.Y = y;
             Position.X = x;
-            Draw(oldPos);
+            Renderer.EraseAtCord(oldPos);
         }
     }
 }

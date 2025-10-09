@@ -1,5 +1,6 @@
 ﻿using labb_2.Interfaces;
 using labb_2.UI;
+using labb_2.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +51,7 @@ internal class Rat : Enemy
             Position oldPos = new Position(Position.Y, Position.X);
             Position.Y = y;
             Position.X = x;
-            Draw(oldPos);
+            Renderer.EraseAtCord(oldPos);
         }
         else if (y == player.Position.Y && x == player.Position.X)
         {

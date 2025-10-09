@@ -13,10 +13,7 @@ namespace labb_2;
 
 internal class Player : LevelElement, ICombatant
 {
-    public string Name { get; }
-    public int HitPoints { get; set; }
-    public Dice AttackDice { get; }
-    public Dice DefenceDice { get; }
+
     public Player(int[] startPosition)
         : base(
             sprite: '@',
@@ -27,7 +24,13 @@ internal class Player : LevelElement, ICombatant
         AttackDice = new(2, 6, 2);
         DefenceDice = new(2, 6, 0);
         HitPoints = 100;
+        VisionRange = 5;
     }
+    public string Name { get; }
+    public int HitPoints { get; set; }
+    public Dice AttackDice { get; }
+    public Dice DefenceDice { get; }
+    public int VisionRange { get; }
 
     public void Death(LevelData levelData)
     {
@@ -62,7 +65,7 @@ internal class Player : LevelElement, ICombatant
             Position oldPos = new Position(Position.Y, Position.X);
             Position.Y = y;
             Position.X = x;
-            Draw(oldPos);
+            Renderer.EraseAtCord(oldPos);
         }
         else if (nextPostionInhabitant is Enemy)
         {

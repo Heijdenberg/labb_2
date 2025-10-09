@@ -1,8 +1,10 @@
 ﻿using labb_2.Interfaces;
 using labb_2.UI;
+using labb_2.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +24,21 @@ internal abstract class Enemy: LevelElement, ICombatant
         HitPoints = hp;
         AttackDice = attackDice;
         DefenceDice = defenceDice;
+    }
+    public override void Draw()
+    {
+        base.Draw();
+    }
+    public virtual void Draw(Player player)
+    {
+        if (GameMath.IsWithinRange(Position, player.Position, player.VisionRange))
+        {
+            base.Draw();
+        }
+        else
+        {
+            Renderer.EraseAtCord(Position);
+        }
     }
     public abstract void Update(LevelData levelData, MessageLog messageLog, Player player);
 

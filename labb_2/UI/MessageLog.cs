@@ -17,7 +17,6 @@ namespace labb_2.UI
         {
             StartRow = atartRow;
             MaxWidth = maxWidth;
-            Draw();
         }
 
         public void Draw()

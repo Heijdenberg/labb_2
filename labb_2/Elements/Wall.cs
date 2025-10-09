@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using labb_2.Utilities;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,11 +12,16 @@ namespace labb_2.Elements;
 internal class Wall : LevelElement
 {
     public Wall(int y, int x) : base('#', ConsoleColor.Gray, y, x){}
-    public bool HasBeenSeen { get; set; }
     public override void Draw()
     {
-        //Console.BackgroundColor = SpriteColor;
         base.Draw();
+    }
+    public void Draw(Player player)
+    {
+        if(GameMath.IsWithinRange(Position,player.Position, player.VisionRange))
+        {
+            base.Draw();
+        }
     }
 
     public void SetWall(int WallType)
