@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace labb_2.Elements;
 
-internal class Rat : Enemy
+internal class Rat : Enemy, IPlayerAwareDrawable
 {
     public Rat(int y, int x)
         : base(name:"rat",

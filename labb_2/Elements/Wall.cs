@@ -1,4 +1,5 @@
-﻿using labb_2.Utilities;
+﻿using labb_2.Interfaces;
+using labb_2.Utilities;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace labb_2.Elements;
 
-internal class Wall : LevelElement
+internal class Wall : LevelElement, IPlayerAwareDrawable
 {
     public Wall(int y, int x) : base('#', ConsoleColor.Gray, y, x){}
     public override void Draw()

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace labb_2.Elements;
 
-internal class Snake : Enemy
+internal class Snake : Enemy, IPlayerAwareDrawable
 {
     public Snake(int y, int x)
         : base(name: "Snake",

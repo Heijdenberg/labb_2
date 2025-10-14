@@ -1,4 +1,5 @@
 ﻿using labb_2.Elements;
+using labb_2.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,13 +29,9 @@ internal class Renderer
     {      
         foreach (LevelElement element in _levelData.Elements)
         {
-            if(element is Wall wall)
+            if(element is IPlayerAwareDrawable iPlayerAwareDrawable)
             {
-                wall.Draw(_player);
-            }
-            else if(element is Enemy enemy)
-            {
-                enemy.Draw(_player);
+                iPlayerAwareDrawable.Draw(_player);
             }
             else
             {
