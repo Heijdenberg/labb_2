@@ -18,7 +18,6 @@ internal class Renderer
 
     public Renderer(LevelData levelData, Player player, MessageLog messageLog, Sidebar sidebar)
     {
-
         _levelData = levelData;
         _player = player;
         _messageLog = messageLog;
@@ -29,14 +28,14 @@ internal class Renderer
     {      
         foreach (LevelElement element in _levelData.Elements)
         {
-            if(element is IPlayerAwareDrawable iPlayerAwareDrawable)
+            if(element is IPlayerAwareDrawable playerAwareDrawable)
             {
-                iPlayerAwareDrawable.Draw(_player);
+                playerAwareDrawable.Draw(_player);
             }
             else
             {
                 element.Draw();
-            } 
+            }
         }
 
         _player.Draw();
@@ -46,15 +45,6 @@ internal class Renderer
 
     static public void EraseAtCord(Position position)
     {
-        //if (position.X < 0 || position.Y < 0)
-        //{
-        //    return;
-        //}
-        //else if (position.X >= Console.BufferWidth || position.Y >= Console.BufferHeight)
-        //{
-        //    return;
-        //}
-
         Console.SetCursorPosition(position.Y, position.X);
         Console.Write(' ');
     }
