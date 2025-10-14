@@ -16,7 +16,7 @@ internal class Program
         Console.OutputEncoding = Encoding.UTF8;
 
         string path = Path.Combine("Levels", "Level1.txt");
-        LevelData levelData = new LevelData();
+        LevelData levelData = new();
         int[] startPosition = levelData.Load(path);
         Player player = new(startPosition);
         MessageLog messageLog = new(levelData.LevelHeight, levelData.LevelWidth);
