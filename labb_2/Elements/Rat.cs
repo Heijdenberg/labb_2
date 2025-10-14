@@ -48,10 +48,9 @@ internal class Rat : Enemy, IPlayerAwareDrawable
 
         if (nextPostionInhabitant == null && (y != player.Position.Y || x != player.Position.X))
         {
-            Position oldPos = new Position(Position.Y, Position.X);
+            Renderer.EraseAtCord(Position);
             Position.Y = y;
             Position.X = x;
-            Renderer.EraseAtCord(oldPos);
         }
         else if (y == player.Position.Y && x == player.Position.X)
         {

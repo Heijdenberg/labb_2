@@ -55,7 +55,7 @@ internal class Renderer
         //    return;
         //}
 
-        Console.SetCursorPosition(position.X, position.Y);
-        Console.Write('x');
+        Console.SetCursorPosition(position.Y, position.X);
+        Console.Write(' ');
     }
 }
