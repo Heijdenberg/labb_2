@@ -1,4 +1,5 @@
-﻿using labb_2.Interfaces;
+﻿using labb_2.Core;
+using labb_2.Interfaces;
 using labb_2.UI;
 using labb_2.Utilities;
 using System;
@@ -81,7 +82,7 @@ internal class Snake : Enemy, IPlayerAwareDrawable
             }
         }
 
-        LevelElement nextPostionInhabitant = levelData.GetElementAtPosition(y, x);
+        LevelElement? nextPostionInhabitant = levelData.GetElementAtPosition(y, x);
 
         if (nextPostionInhabitant == null)
         {

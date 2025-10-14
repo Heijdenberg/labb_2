@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace labb_2;
+namespace labb_2.Core;
 
 internal class Player : LevelElement, ICombatant
 {

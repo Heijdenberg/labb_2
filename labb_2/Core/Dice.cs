@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace labb_2;
+namespace labb_2.Core;
 
 internal class Dice
 {

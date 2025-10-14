@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace labb_2;
+namespace labb_2.Core;
 
 internal class Combat
 {

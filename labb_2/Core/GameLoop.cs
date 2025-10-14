@@ -8,7 +8,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace labb_2;
+namespace labb_2.Core;
 
 internal class GameLoop
 {
@@ -17,19 +17,19 @@ internal class GameLoop
     private MessageLog _messageLog;
     private Renderer _renderer;
 
-    public GameLoop(LevelData levelData, Player player, MessageLog messageLog, Renderer renderer)
+    public GameLoop(LevelData levelData, Player player, MessageLog messageLog, Sidebar sidebar)
     {
         _levelData = levelData;
         _player = player;
         _messageLog = messageLog;
-        _renderer = renderer;
+        _renderer = new(levelData, player, messageLog, sidebar);
     }
 
     public void StartLoop()
     {
         while (true)
         {
-            this._renderer.DrawAll();
+            _renderer.DrawAll();
             ConsoleKey thePressedKey = Console.ReadKey(intercept: true).Key;
             _player.Update(thePressedKey, _levelData, _messageLog);
 

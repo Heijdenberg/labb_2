@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace labb_2;
+namespace labb_2.Core;
 
 internal class LevelData
 {
@@ -42,7 +42,7 @@ internal class LevelData
         int[] startPosition = [0, 0];
         using (StreamReader reader = new StreamReader(path))
         {
-            string line;
+            string? line;
 
             for (int i = 0; (line = reader.ReadLine()) != null; i++)
             {
@@ -71,7 +71,7 @@ internal class LevelData
         return startPosition;
     }
 
-    public LevelElement GetElementAtPosition(int y, int x)
+    public LevelElement? GetElementAtPosition(int y, int x)
     {
         LevelElement? inhabitant = null;
 

@@ -1,4 +1,5 @@
-﻿using labb_2.Interfaces;
+﻿using labb_2.Core;
+using labb_2.Interfaces;
 using labb_2.UI;
 using labb_2.Utilities;
 using System;
@@ -44,7 +45,7 @@ internal class Rat : Enemy, IPlayerAwareDrawable
             y++;
         }
 
-        LevelElement nextPostionInhabitant = levelData.GetElementAtPosition(y, x);
+        LevelElement? nextPostionInhabitant = levelData.GetElementAtPosition(y, x);
 
         if (nextPostionInhabitant == null && (y != player.Position.Y || x != player.Position.X))
         {

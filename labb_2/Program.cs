@@ -1,4 +1,5 @@
-﻿using labb_2.UI;
+﻿using labb_2.Core;
+using labb_2.UI;
 using System;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -20,11 +21,13 @@ internal class Program
         Player player = new(startPosition);
         MessageLog messageLog = new(levelData.LevelHeight, levelData.LevelWidth);
         Sidebar sidebar = new(levelData.LevelHeight, levelData.LevelWidth, player);
-        Renderer renderer = new(levelData, player, messageLog, sidebar);
-        GameLoop gameLoop = new(levelData, player, messageLog, renderer);
+        GameLoop gameLoop = new(levelData, player, messageLog, sidebar);
 
-        Console.BufferWidth += levelData.LevelWidth + sidebar.Width;
-        Console.BufferHeight = 150;
+        if(OperatingSystem.IsWindows())
+        { 
+            Console.BufferWidth += levelData.LevelWidth + sidebar.Width;
+        }
+
         levelData.SolidWalls();
         gameLoop.StartLoop();
     }
