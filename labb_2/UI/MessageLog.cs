@@ -1,4 +1,5 @@
-﻿using System;
+﻿using labb_2.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,5 +45,11 @@ internal class MessageLog
             _messages.RemoveAt(_messages.Count - 1);
         }
         Draw();
+        Thread.Sleep(500);
+
+        while (Console.KeyAvailable)
+        {
+            Console.ReadKey(intercept: true);
+        }
     }
 }

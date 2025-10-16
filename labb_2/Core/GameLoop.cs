@@ -30,6 +30,7 @@ internal class GameLoop
         while (true)
         {
             _renderer.DrawAll();
+
             ConsoleKey thePressedKey = Console.ReadKey(intercept: true).Key;
             _player.Update(thePressedKey, _levelData, _messageLog);
 
