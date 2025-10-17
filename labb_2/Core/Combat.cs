@@ -23,21 +23,21 @@ internal class Combat
     public void Battle(MessageLog messageLog, LevelData levelData)
     {
         int damage = Attack(Attacker.AttackDice, Defender.DefenceDice);
-        Defender.HitPoints -= damage;
+        Defender.HitPoints.HP -= damage;
 
         messageLog.AddMassage($"{Attacker.Name} attacks {Defender.Name} for {damage} damage.");
 
-        if (Defender.HitPoints <= 0)
+        if (Defender.HitPoints.HP <= 0)
         {
             messageLog.AddMassage($"{Defender.Name} is dead");
             Defender.Death(levelData);
             return;
         }
 
-        Attacker.HitPoints -= Attack(Defender.AttackDice, Attacker.DefenceDice);
+        Attacker.HitPoints.HP -= Attack(Defender.AttackDice, Attacker.DefenceDice);
 
         messageLog.AddMassage($"{Defender.Name} Counter attaks {Attacker.Name} for {damage} damage.");
-        if (Attacker.HitPoints <= 0)
+        if (Attacker.HitPoints.HP <= 0)
         {
             messageLog.AddMassage($"{Attacker.Name} is dead");
             return;

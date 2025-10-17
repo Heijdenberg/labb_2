@@ -1,4 +1,5 @@
-﻿using labb_2.Core;
+﻿using labb_2.Components;
+using labb_2.Core;
 using labb_2.Interfaces;
 using labb_2.UI;
 using labb_2.Utilities;
@@ -14,7 +15,7 @@ namespace labb_2.Elements;
 internal abstract class Enemy: LevelElement, ICombatant
 {
     public string Name { get; }
-    public int HitPoints { get; set; }
+    public HitPoints HitPoints { get; set; }
     public Dice AttackDice { get; }
     public Dice DefenceDice { get; }
 
@@ -22,7 +23,7 @@ internal abstract class Enemy: LevelElement, ICombatant
         : base(sprite, color, y, x)
     {
         Name = name;
-        HitPoints = hp;
+        HitPoints = new HitPoints(hp);
         AttackDice = attackDice;
         DefenceDice = defenceDice;
     }

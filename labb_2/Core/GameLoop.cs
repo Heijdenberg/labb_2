@@ -34,7 +34,7 @@ internal class GameLoop
             ConsoleKey thePressedKey = Console.ReadKey(intercept: true).Key;
             _player.Update(thePressedKey, _levelData, _messageLog);
 
-            if (thePressedKey == ConsoleKey.Escape || _player.HitPoints <= 0)
+            if (thePressedKey == ConsoleKey.Escape || _player.HitPoints.HP <= 0)
             {
                 GameOverScreen gameOverScreen = new();
                 gameOverScreen.GameOver(_levelData.LevelHeight, _levelData.LevelWidth);

@@ -59,7 +59,7 @@ internal class Sidebar
 
     private void DrawLifeCounter()
     {
-        int hearts = _player.HitPoints / 5;
+        int hearts = _player.HitPoints.HP / 5;
         if (hearts == 0)
         {
             hearts = 1;

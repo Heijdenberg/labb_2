@@ -1,4 +1,5 @@
-﻿using labb_2.Elements;
+﻿using labb_2.Components;
+using labb_2.Elements;
 using labb_2.Interfaces;
 using labb_2.UI;
 using System;
@@ -23,11 +24,11 @@ internal class Player : LevelElement, ICombatant
         Name = "Player";
         AttackDice = new(2, 6, 2);
         DefenceDice = new(2, 6, 0);
-        HitPoints = 100;
+        HitPoints = new HitPoints(100);
         VisionRange = 5;
     }
     public string Name { get; }
-    public int HitPoints { get; set; }
+    public HitPoints HitPoints { get; set; }
     public Dice AttackDice { get; }
     public Dice DefenceDice { get; }
     public int VisionRange { get; }
