@@ -63,7 +63,6 @@ internal class Sidebar
 
         Console.SetCursorPosition(_x, Console.GetCursorPosition().Top);
         Console.WriteLine($"╚{new string('═', _width - 2)}╝");
-
         Console.SetCursorPosition(_x + 1, 1);
         Console.ForegroundColor = ConsoleColor.Red;
         Console.SetCursorPosition(_x + 2, Console.GetCursorPosition().Top);
@@ -72,10 +71,12 @@ internal class Sidebar
     private void DrawLifeCounter()
     {
         int hearts = _player.HitPoints.HP / 5;
+
         if (hearts == 0)
         {
             hearts = 1;
         }
+
         while (hearts > 0)
         {
             Console.Write('♥');
@@ -86,6 +87,7 @@ internal class Sidebar
             }
             hearts--;
         }
+
         Console.ResetColor();
     }
 
@@ -128,6 +130,4 @@ internal class Sidebar
         Console.SetCursorPosition(_x + 2, startLine);
         Console.WriteLine($"♦ Kill all enemies");
     }
-
-
 }

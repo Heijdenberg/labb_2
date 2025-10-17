@@ -26,6 +26,5 @@ static class GameMath
         {
             return false;
         }
-
     }
 }

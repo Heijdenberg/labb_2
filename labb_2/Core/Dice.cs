@@ -15,9 +15,9 @@ internal class Dice
 
     public Dice(int numberOfDice, int sidesPerDice, int modifier)
     {
-        this._numberOfDice = numberOfDice;
-        this._sidesPerDice = sidesPerDice;
-        this._modifier = modifier;
+        _numberOfDice = numberOfDice;
+        _sidesPerDice = sidesPerDice;
+        _modifier = modifier;
     }
 
     public int Modifier

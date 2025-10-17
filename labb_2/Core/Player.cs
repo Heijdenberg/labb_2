@@ -14,7 +14,6 @@ namespace labb_2.Core;
 
 internal class Player : LevelElement, ICombatant
 {
-
     public Player(int[] startPosition, string name)
         : base(
             sprite: '@',

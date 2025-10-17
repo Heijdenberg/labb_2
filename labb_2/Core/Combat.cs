@@ -12,14 +12,13 @@ namespace labb_2.Core;
 
 internal class Combat
 {
-    private ICombatant Attacker { get; }
-    private ICombatant Defender { get; }
-
     public Combat(ICombatant attacker, ICombatant defender)
     {
         Attacker = attacker;
         Defender = defender;
     }
+    private ICombatant Attacker { get; }
+    private ICombatant Defender { get; }
     public void Battle(MessageLog messageLog, LevelData levelData)
     {
         int damage = Attack(Attacker.AttackDice, Defender.DefenceDice);

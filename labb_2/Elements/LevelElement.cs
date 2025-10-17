@@ -10,16 +10,15 @@ namespace labb_2.Elements;
 
 internal abstract class LevelElement
 {
-    public char Sprite { get; set; }
-    public Position Position { get; set; }
-    public ConsoleColor SpriteColor { get; }
-
     protected LevelElement(char sprite, ConsoleColor spriteColor, int y, int x)
     {
         Sprite = sprite;
         SpriteColor = spriteColor;
         Position = new Position(y, x);
     }
+    public char Sprite { get; set; }
+    public Position Position { get; set; }
+    public ConsoleColor SpriteColor { get; }
 
     public virtual void Draw()
     {

@@ -11,14 +11,15 @@ internal class MessageLog
 {
     private List<string> _messages = new() { "", "", "", "", "" };
     private int _maxMessages = 5;
-    private int StartRow { get; set; }
-    private int MaxWidth { get; set; }
 
     public MessageLog(int atartRow, int maxWidth)
     {
         StartRow = atartRow;
         MaxWidth = maxWidth;
     }
+
+    private int StartRow { get; set; }
+    private int MaxWidth { get; set; }
 
     public void Draw()
     {

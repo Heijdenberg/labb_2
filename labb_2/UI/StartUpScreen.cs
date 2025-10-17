@@ -10,7 +10,8 @@ namespace labb_2.UI
     {
         public static void Draw()
         {
-            string StartText = @"
+            string StartText =
+@"
   _________              __                  
  /   _____/ ____   ____ |  | __ ____   ______
  \_____  \ /    \_/ __ \|  |/ // __ \ /  ___/
@@ -33,6 +34,7 @@ namespace labb_2.UI
             Console.WriteLine(StartText);
             Thread.Sleep(2000);
             Console.SetCursorPosition(0, 0);
+
             for (int i = 0; i < 19; i++)
             {
                 Console.WriteLine(new string(' ',100));

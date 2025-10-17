@@ -14,11 +14,6 @@ namespace labb_2.Elements;
 
 internal abstract class Enemy : LevelElement, ICombatant
 {
-    public string Name { get; }
-    public HitPoints HitPoints { get; set; }
-    public Dice AttackDice { get; }
-    public Dice DefenceDice { get; }
-
     public Enemy(string name, int hp, Dice attackDice, Dice defenceDice, char sprite, ConsoleColor color, int y, int x)
         : base(sprite, color, y, x)
     {
@@ -27,6 +22,12 @@ internal abstract class Enemy : LevelElement, ICombatant
         AttackDice = attackDice;
         DefenceDice = defenceDice;
     }
+
+    public string Name { get; }
+    public HitPoints HitPoints { get; set; }
+    public Dice AttackDice { get; }
+    public Dice DefenceDice { get; }
+
     public override void Draw()
     {
         base.Draw();
