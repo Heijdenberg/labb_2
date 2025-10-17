@@ -9,42 +9,54 @@ namespace labb_2.Core;
 
 internal class Dice
 {
-    private int numberOfDice;
-    private int sidesPerDice;
-    private int modifier;
+    private int _numberOfDice;
+    private int _sidesPerDice;
+    private int _modifier;
 
     public Dice(int numberOfDice, int sidesPerDice, int modifier)
     {
-        this.numberOfDice = numberOfDice;
-        this.sidesPerDice = sidesPerDice;
-        this.modifier = modifier;
+        this._numberOfDice = numberOfDice;
+        this._sidesPerDice = sidesPerDice;
+        this._modifier = modifier;
+    }
+
+    public int Modifier
+    {
+        get
+        {
+            return _modifier;
+        }
+        set
+        {
+            _modifier += value; 
+        }
     }
 
     public int Throw()
     {
         int result = 0;
 
-        for (int i = 0; i < numberOfDice; i++)
+        for (int i = 0; i < _numberOfDice; i++)
         {
-            result += GameRandom.Random.Next(1, sidesPerDice+1);
+            result += GameRandom.Random.Next(1, _sidesPerDice+1);
         }
 
-        result += modifier;
+        result += _modifier;
 
         return result;
     }
 
     public override string ToString()
     {
-        string diceNotation = $"{numberOfDice}D{sidesPerDice}";
+        string diceNotation = $"{_numberOfDice}D{_sidesPerDice}";
 
-        if (modifier > 0)
+        if (_modifier > 0)
         {
-            diceNotation += $"+{modifier}";
+            diceNotation += $"+{_modifier}";
         }
-        else if (modifier < 0)
+        else if (_modifier < 0)
         {
-            diceNotation += $"{modifier}";
+            diceNotation += $"{_modifier}";
         }
 
             return diceNotation;

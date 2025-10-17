@@ -18,7 +18,7 @@ internal class Sidebar
 
     public Sidebar(int levelHeight, int levelWidth, Player player, LevelData levelData)
     {
-        _height = 3;
+        _height = 4;
         _width = 24;
         _x = levelWidth+1;
         _player = player;
@@ -97,6 +97,10 @@ internal class Sidebar
 
         Console.SetCursorPosition(_x + 1, startLine);
         Console.WriteLine($" Enemys left: {_levelData.GetEnemyCount()}");
+        startLine++;
+
+        Console.SetCursorPosition(_x + 1, startLine);
+        Console.WriteLine($" Attack modifier: {_player.AttackDice.Modifier}");
     }
 
 

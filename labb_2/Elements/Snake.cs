@@ -94,4 +94,13 @@ internal class Snake : Enemy, IPlayerAwareDrawable
             }
         }
     }
+
+    public override void Death(LevelData leveldata, MessageLog messageLog, ICombatant killer)
+    {
+        base.Death(leveldata, messageLog, killer);
+
+        int modifierGain = 2;
+        killer.AttackDice.Modifier = modifierGain;
+        messageLog.AddMassage($"You eat {Name} and you feal more powerful");
+    }
 }
