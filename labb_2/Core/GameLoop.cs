@@ -57,7 +57,9 @@ internal class GameLoop
     }
     private void UpdateEnemys()
     {
-        foreach(LevelElement element in _levelData.Elements)
+        foreach (var element in _levelData.Elements
+                                 .OfType<Enemy>()
+                                 .ToList())
         {
             if(element is Enemy enemy)
             {
