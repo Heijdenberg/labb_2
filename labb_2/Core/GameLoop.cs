@@ -42,7 +42,12 @@ internal class GameLoop
             IncrementTurnCount();
             _renderer.DrawAll();
 
-            if (thePressedKey == ConsoleKey.Escape || _player.HitPoints.HP <= 0)
+            if (thePressedKey == ConsoleKey.Enter || _levelData.GetEnemyCount() <= 0)
+            {
+                VictoryScreen victoryScreen = new();
+                victoryScreen.Victory(_levelData.LevelHeight, _levelData.LevelWidth);
+            }
+            else if (thePressedKey == ConsoleKey.Escape || _player.HitPoints.HP <= 0)
             {
                 GameOverScreen gameOverScreen = new();
                 gameOverScreen.GameOver(_levelData.LevelHeight, _levelData.LevelWidth);
