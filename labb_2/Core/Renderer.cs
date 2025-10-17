@@ -1,7 +1,7 @@
 ﻿using labb_2.Components;
-using labb_2.Core;
 using labb_2.Elements;
 using labb_2.Interfaces;
+using labb_2.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace labb_2.UI;
+namespace labb_2.Core;
 
 internal class Renderer
 {
