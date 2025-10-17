@@ -17,6 +17,7 @@ internal class Renderer
     private Player _player;
     private MessageLog _messageLog;
     private Sidebar _sidebar;
+    static private List<Position> _removeList = new();
 
     public Renderer(LevelData levelData, Player player, MessageLog messageLog, Sidebar sidebar)
     {
@@ -28,6 +29,12 @@ internal class Renderer
 
     public void DrawAll()
     {      
+        foreach (Position position in _removeList)
+        {
+            EraseAtCords(position);
+        }
+        _removeList.Clear();
+
         foreach (LevelElement element in _levelData.Elements)
         {
             if(element is IPlayerAwareDrawable playerAwareDrawable)
@@ -45,9 +52,14 @@ internal class Renderer
         _sidebar.Draw();
     }
 
-    static public void EraseAtCord(Position position)
+    static public void AddToRemoveList(Position position)
     {
-        Console.SetCursorPosition(position.Y, position.X);
+        _removeList.Add(new Position(position.Y,position.X));
+    }
+
+    static public void EraseAtCords(Position position)
+    {
+        Console.SetCursorPosition(position.X, position.Y);
         Console.Write(' ');
     }
 }

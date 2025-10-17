@@ -24,40 +24,43 @@ internal class Rat : Enemy, IPlayerAwareDrawable
 
     public override void Update(LevelData levelData, MessageLog messageLog, Player player)
     {
-        int y = Position.Y;
-        int x = Position.X;
-        int direction = GameRandom.Random.Next(0, 4);
+        if (HitPoints.HP > 0)
+        {
+            int y = Position.Y;
+            int x = Position.X;
+            int direction = GameRandom.Random.Next(0, 4);
 
-        if (direction == 0)
-        {
-            x--;
-        }
-        else if (direction == 1)
-        {
-            y--;
-        }
-        else if (direction == 2)
-        {
-            x++;
-        }
-        else if (direction == 3)
-        {
-            y++;
-        }
+            if (direction == 0)
+            {
+                x--;
+            }
+            else if (direction == 1)
+            {
+                y--;
+            }
+            else if (direction == 2)
+            {
+                x++;
+            }
+            else if (direction == 3)
+            {
+                y++;
+            }
 
-        LevelElement? nextPostionInhabitant = levelData.GetElementAtPosition(y, x);
+            LevelElement? nextPostionInhabitant = levelData.GetElementAtPosition(y, x);
 
-        if (nextPostionInhabitant == null && (y != player.Position.Y || x != player.Position.X))
-        {
-            Renderer.EraseAtCord(Position);
-            Position.Y = y;
-            Position.X = x;
-        }
-        else if (y == player.Position.Y && x == player.Position.X)
-        {
-            messageLog.AddMassage($"{Name} attacked player!");
-            Combat combat = new(this, (ICombatant)player);
-            combat.Battle(messageLog, levelData);
+            if (nextPostionInhabitant == null && (y != player.Position.Y || x != player.Position.X))
+            {
+                Renderer.AddToRemoveList(Position);
+                Position.Y = y;
+                Position.X = x;
+            }
+            else if (y == player.Position.Y && x == player.Position.X)
+            {
+                messageLog.AddMassage($"{Name} attacked player!");
+                Combat combat = new(this, (ICombatant)player);
+                combat.Battle(messageLog, levelData);
+            }
         }
     }
 }

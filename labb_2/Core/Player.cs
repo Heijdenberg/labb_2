@@ -63,7 +63,7 @@ internal class Player : LevelElement, ICombatant
 
         if (nextPostionInhabitant == null)
         {
-            Renderer.EraseAtCord(Position);
+            Renderer.AddToRemoveList(Position);
             Position.Y = y;
             Position.X = x;
         }

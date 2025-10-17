@@ -27,20 +27,21 @@ internal class GameLoop
 
     public void StartLoop()
     {
+        _renderer.DrawAll();
+
         while (true)
         {
-            _renderer.DrawAll();
-
             ConsoleKey thePressedKey = Console.ReadKey(intercept: true).Key;
             _player.Update(thePressedKey, _levelData, _messageLog);
+            UpdateEnemys();
+
+            _renderer.DrawAll();
 
             if (thePressedKey == ConsoleKey.Escape || _player.HitPoints.HP <= 0)
             {
                 GameOverScreen gameOverScreen = new();
                 gameOverScreen.GameOver(_levelData.LevelHeight, _levelData.LevelWidth);
             }
-
-            UpdateEnemys();
         }
     }
 

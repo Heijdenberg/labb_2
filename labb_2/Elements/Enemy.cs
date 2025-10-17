@@ -39,7 +39,7 @@ internal abstract class Enemy: LevelElement, ICombatant
         }
         else
         {
-            Renderer.EraseAtCord(Position);
+            Renderer.AddToRemoveList(Position);
         }
     }
     public abstract void Update(LevelData levelData, MessageLog messageLog, Player player);
@@ -47,5 +47,6 @@ internal abstract class Enemy: LevelElement, ICombatant
     public void Death(LevelData leveldata)
     {
         leveldata.removeElement(Position.Y,Position.X);
+        Renderer.AddToRemoveList(Position);
     }
 }

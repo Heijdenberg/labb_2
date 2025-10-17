@@ -24,18 +24,43 @@ internal class Snake : Enemy, IPlayerAwareDrawable
     { }
     public override void Update(LevelData levelData, MessageLog messageLog, Player player)
     {
-        int y = Position.Y;
-        int x = Position.X;
-
-        int yDif = player.Position.Y - y;
-        int xDif = player.Position.X - x;
-
-        if (GameMath.IsWithinRange(Position, player.Position, 2.0))
+        if (HitPoints.HP > 0)
         {
-            if (Math.Abs(yDif) == Math.Abs(xDif))
+            int y = Position.Y;
+            int x = Position.X;
+
+            int yDif = player.Position.Y - y;
+            int xDif = player.Position.X - x;
+
+            if (GameMath.IsWithinRange(Position, player.Position, 2.0))
             {
-                int randomDirection = GameRandom.Random.Next(0,2);
-                if (randomDirection == 0)
+                if (Math.Abs(yDif) == Math.Abs(xDif))
+                {
+                    int randomDirection = GameRandom.Random.Next(0, 2);
+                    if (randomDirection == 0)
+                    {
+                        if (yDif > 0.0)
+                        {
+                            y--;
+                        }
+                        else
+                        {
+                            y++;
+                        }
+                    }
+                    else
+                    {
+                        if (xDif > 0.0)
+                        {
+                            x--;
+                        }
+                        else
+                        {
+                            x++;
+                        }
+                    }
+                }
+                else if (Math.Abs(yDif) > Math.Abs(xDif))
                 {
                     if (yDif > 0.0)
                     {
@@ -58,37 +83,15 @@ internal class Snake : Enemy, IPlayerAwareDrawable
                     }
                 }
             }
-            else if (Math.Abs(yDif) > Math.Abs(xDif))
-            {
-                if (yDif > 0.0)
-                {
-                    y--;
-                }
-                else
-                {
-                    y++;
-                }
-            }
-            else
-            {
-                if (xDif > 0.0)
-                {
-                    x--;
-                }
-                else
-                {
-                    x++;
-                }
-            }
-        }
 
-        LevelElement? nextPostionInhabitant = levelData.GetElementAtPosition(y, x);
+            LevelElement? nextPostionInhabitant = levelData.GetElementAtPosition(y, x);
 
-        if (nextPostionInhabitant == null)
-        {
-            Renderer.EraseAtCord(Position);
-            Position.Y = y;
-            Position.X = x;
+            if (nextPostionInhabitant == null)
+            {
+                Renderer.AddToRemoveList(Position);
+                Position.Y = y;
+                Position.X = x;
+            }
         }
     }
 }
