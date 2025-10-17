@@ -98,6 +98,21 @@ internal class LevelData
         }
         return index;
     }
+
+    public int GetEnemyCount()
+    {
+        int enemyCount = 0;
+
+        foreach(LevelElement element in _elements)
+        {
+            if(element is Enemy)
+            {
+                enemyCount++;
+            }
+        }
+
+        return enemyCount;
+    }
     public void removeElement(int y, int x)
     {
         int index = GetElementIndexAtPosition(y, x);

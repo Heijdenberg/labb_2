@@ -20,7 +20,7 @@ internal class Program
         int[] startPosition = levelData.Load(path);
         Player player = new(startPosition);
         MessageLog messageLog = new(levelData.LevelHeight, levelData.LevelWidth);
-        Sidebar sidebar = new(levelData.LevelHeight, levelData.LevelWidth, player);
+        Sidebar sidebar = new(levelData.LevelHeight, levelData.LevelWidth, player, levelData);
         GameLoop gameLoop = new(levelData, player, messageLog, sidebar);
 
         if(OperatingSystem.IsWindows())

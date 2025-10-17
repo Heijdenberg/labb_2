@@ -13,14 +13,21 @@ internal class Sidebar
     private readonly int _width;
     private readonly int _x;
     private readonly Player _player;
+    private int _turnCount = 0;
+    private LevelData _levelData;
 
-    public Sidebar(int levelHeight, int levelWidth, Player player)
+    public Sidebar(int levelHeight, int levelWidth, Player player, LevelData levelData)
     {
-        _height = levelHeight-1;
+        _height = 3;
         _width = 24;
         _x = levelWidth+1;
         _player = player;
+        _levelData = levelData;
+    }
 
+    public int TurnCount
+    {
+        set { _turnCount = value; }
     }
 
     public int Width
@@ -32,6 +39,7 @@ internal class Sidebar
     {
         DrawBox();
         DrawLifeCounter();
+        DrawGameStats(3);
     }
 
     private void DrawBox()
@@ -76,4 +84,20 @@ internal class Sidebar
         }
         Console.ResetColor();
     }
+
+    private void DrawGameStats(int startLine)
+    {
+        Console.SetCursorPosition(_x + 1, startLine);
+        Console.WriteLine($" HP: {_player.HitPoints.HP}");
+        startLine++;
+
+        Console.SetCursorPosition(_x + 1, startLine);
+        Console.WriteLine($" Turn: {_turnCount}");
+        startLine++;
+
+        Console.SetCursorPosition(_x + 1, startLine);
+        Console.WriteLine($" Enemys left: {_levelData.GetEnemyCount()}");
+    }
+
+
 }

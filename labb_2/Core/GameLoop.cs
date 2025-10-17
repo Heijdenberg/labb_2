@@ -16,6 +16,8 @@ internal class GameLoop
     private Player _player;
     private MessageLog _messageLog;
     private Renderer _renderer;
+    private Sidebar _sidebar; 
+    private int _turnCount;
 
     public GameLoop(LevelData levelData, Player player, MessageLog messageLog, Sidebar sidebar)
     {
@@ -23,6 +25,8 @@ internal class GameLoop
         _player = player;
         _messageLog = messageLog;
         _renderer = new(levelData, player, messageLog, sidebar);
+        _turnCount = 0;
+        _sidebar = sidebar;
     }
 
     public void StartLoop()
@@ -33,8 +37,9 @@ internal class GameLoop
         {
             ConsoleKey thePressedKey = Console.ReadKey(intercept: true).Key;
             _player.Update(thePressedKey, _levelData, _messageLog);
+            _renderer.DrawAll();
             UpdateEnemys();
-
+            IncrementTurnCount();
             _renderer.DrawAll();
 
             if (thePressedKey == ConsoleKey.Escape || _player.HitPoints.HP <= 0)
@@ -45,6 +50,11 @@ internal class GameLoop
         }
     }
 
+    private void IncrementTurnCount()
+    {
+        _turnCount++;
+        _sidebar.TurnCount = _turnCount;
+    }
     private void UpdateEnemys()
     {
         foreach(LevelElement element in _levelData.Elements)
