@@ -27,7 +27,7 @@ internal class MessageLog
         messageBox += $"╔{new string('═', MaxWidth - 2)}╗\n";
         foreach (string message in _messages)
         {
-            string messageLine = $"║{message}{new string(' ', MaxWidth - 2)}{new string(' ', MaxWidth - 2)}";
+            string messageLine = $"║ {message}{new string(' ', MaxWidth - 2)}{new string(' ', MaxWidth - 2)}";
             messageLine = messageLine.Substring(0, MaxWidth - 1);
             messageLine += "║\n";
             messageBox += messageLine;

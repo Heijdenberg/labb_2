@@ -32,6 +32,7 @@ internal class GameLoop
     public void StartLoop()
     {
         _renderer.DrawAll();
+        StartMsg();
 
         while (true)
         {
@@ -71,5 +72,13 @@ internal class GameLoop
                 enemy.Update(_levelData, _messageLog, _player);
             }
         }
+    }
+
+    private void StartMsg()
+    {
+        _messageLog.AddMassage(" ");
+        _messageLog.AddMassage("@ is you.");
+        _messageLog.AddMassage("Walk by using WASD or ↑←↓→.");
+        _messageLog.AddMassage("Your goal is to kill all the enemies.");
     }
 }

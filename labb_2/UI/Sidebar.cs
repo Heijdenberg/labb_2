@@ -14,6 +14,7 @@ internal class Sidebar
     private readonly int _x;
     private readonly Player _player;
     private int _turnCount = 0;
+    private int _enemyStartCount;
     private LevelData _levelData;
 
     public Sidebar(int levelHeight, int levelWidth, Player player, LevelData levelData)
@@ -23,6 +24,7 @@ internal class Sidebar
         _x = levelWidth+1;
         _player = player;
         _levelData = levelData;
+        _enemyStartCount = levelData.GetEnemyCount();
     }
 
     public int TurnCount
@@ -40,6 +42,7 @@ internal class Sidebar
         DrawBox();
         DrawLifeCounter();
         DrawGameStats(3);
+        DrawGoal(9);
     }
 
     private void DrawBox()
@@ -57,6 +60,7 @@ internal class Sidebar
             Console.SetCursorPosition(_x, Console.GetCursorPosition().Top);
             Console.WriteLine($"║{new string(' ', _width - 2)}║");
         }
+
         Console.SetCursorPosition(_x, Console.GetCursorPosition().Top);
         Console.WriteLine($"╚{new string('═', _width - 2)}╝");
 
@@ -96,11 +100,29 @@ internal class Sidebar
         startLine++;
 
         Console.SetCursorPosition(_x + 1, startLine);
-        Console.WriteLine($" Enemys left: {_levelData.GetEnemyCount()}");
+        Console.WriteLine($" Enemys: {_levelData.GetEnemyCount()} of {_enemyStartCount}");
         startLine++;
 
         Console.SetCursorPosition(_x + 1, startLine);
         Console.WriteLine($" Attack modifier: {_player.AttackDice.Modifier}");
+    }
+
+    private void DrawGoal(int startLine)
+    {
+        Console.SetCursorPosition(_x, startLine);
+        Console.WriteLine($"╔═ Goal {new string('═', _width - 9)}╗");
+        startLine++;
+
+        Console.SetCursorPosition(_x, startLine);
+        Console.WriteLine($"║{new string(' ', _width - 2)}║");
+        startLine++;
+
+        Console.SetCursorPosition(_x, startLine);
+        Console.WriteLine($"╚{new string('═', _width - 2)}╝");
+        startLine--;
+
+        Console.SetCursorPosition(_x+2, startLine);
+        Console.WriteLine($"♦ Kill all enemies");
     }
 
 
