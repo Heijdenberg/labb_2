@@ -32,6 +32,7 @@ namespace labb_2.UI
 
         private static void DrawBox(int hight, int width)
         {
+            Console.SetCursorPosition(0,0);
             Console.WriteLine($"╔{new string('═', width - 2)}╗");
             for (int ii = 0; ii < hight - 2; ii++)
             {

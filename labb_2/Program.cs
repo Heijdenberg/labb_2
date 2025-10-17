@@ -15,6 +15,8 @@ internal class Program
         Console.CursorVisible = false;
         Console.OutputEncoding = Encoding.UTF8;
 
+        StartUpScreen.Draw();
+
         string path = Path.Combine("Levels", "Level1.txt");
         LevelData levelData = new();
         int[] startPosition = levelData.Load(path);
