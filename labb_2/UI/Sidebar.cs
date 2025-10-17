@@ -19,7 +19,7 @@ internal class Sidebar
 
     public Sidebar(int levelHeight, int levelWidth, Player player, LevelData levelData)
     {
-        _height = 4;
+        _height = 5;
         _width = 24;
         _x = levelWidth+1;
         _player = player;
@@ -42,7 +42,7 @@ internal class Sidebar
         DrawBox();
         DrawLifeCounter();
         DrawGameStats(3);
-        DrawGoal(9);
+        DrawGoal(10);
     }
 
     private void DrawBox()
@@ -91,6 +91,10 @@ internal class Sidebar
 
     private void DrawGameStats(int startLine)
     {
+        Console.SetCursorPosition(_x + 1, startLine);
+        Console.WriteLine($" Player: {_player.Name}");
+        startLine++;
+
         Console.SetCursorPosition(_x + 1, startLine);
         Console.WriteLine($" HP: {_player.HitPoints.HP}");
         startLine++;

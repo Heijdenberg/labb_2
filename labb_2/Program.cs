@@ -18,7 +18,8 @@ internal class Program
         string path = Path.Combine("Levels", "Level1.txt");
         LevelData levelData = new();
         int[] startPosition = levelData.Load(path);
-        Player player = new(startPosition);
+        string playerName = NameScreen.SetName(levelData.LevelHeight, levelData.LevelWidth);
+        Player player = new(startPosition, playerName);
         MessageLog messageLog = new(levelData.LevelHeight, levelData.LevelWidth);
         Sidebar sidebar = new(levelData.LevelHeight, levelData.LevelWidth, player, levelData);
         GameLoop gameLoop = new(levelData, player, messageLog, sidebar);

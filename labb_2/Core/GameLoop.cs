@@ -80,5 +80,6 @@ internal class GameLoop
         _messageLog.AddMassage("@ is you.");
         _messageLog.AddMassage("Walk by using WASD or ↑←↓→.");
         _messageLog.AddMassage("Your goal is to kill all the enemies.");
+        _messageLog.AddMassage("Killing enemies will give you power ups.");
     }
 }

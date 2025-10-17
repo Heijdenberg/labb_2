@@ -15,13 +15,13 @@ namespace labb_2.Core;
 internal class Player : LevelElement, ICombatant
 {
 
-    public Player(int[] startPosition)
+    public Player(int[] startPosition, string name)
         : base(
             sprite: '@',
             spriteColor: ConsoleColor.Cyan,
             startPosition[0], startPosition[1])
     {
-        Name = "Player";
+        Name = name;
         AttackDice = new(2, 6, 2);
         DefenceDice = new(2, 6, 0);
         HitPoints = new HitPoints(100);
