@@ -28,7 +28,7 @@ internal class Dice
         }
         set
         {
-            _modifier += value; 
+            _modifier += value;
         }
     }
 
@@ -38,7 +38,7 @@ internal class Dice
 
         for (int i = 0; i < _numberOfDice; i++)
         {
-            result += GameRandom.Random.Next(1, _sidesPerDice+1);
+            result += GameRandom.Random.Next(1, _sidesPerDice + 1);
         }
 
         result += _modifier;
@@ -59,6 +59,6 @@ internal class Dice
             diceNotation += $"{_modifier}";
         }
 
-            return diceNotation;
+        return diceNotation;
     }
 }

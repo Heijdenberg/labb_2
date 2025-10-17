@@ -13,14 +13,14 @@ namespace labb_2.Elements;
 
 internal class Wall : LevelElement, IPlayerAwareDrawable
 {
-    public Wall(int y, int x) : base('#', ConsoleColor.Gray, y, x){}
+    public Wall(int y, int x) : base('#', ConsoleColor.Gray, y, x) { }
     public override void Draw()
     {
         base.Draw();
     }
     public void Draw(Player player)
     {
-        if(GameMath.IsWithinRange(Position,player.Position, player.VisionRange))
+        if (GameMath.IsWithinRange(Position, player.Position, player.VisionRange))
         {
             base.Draw();
         }

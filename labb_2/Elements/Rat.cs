@@ -13,14 +13,14 @@ namespace labb_2.Elements;
 internal class Rat : Enemy, IPlayerAwareDrawable
 {
     public Rat(int y, int x)
-        : base(name:"rat",
-            hp:10,
-            attackDice: new Dice(1,6,3),
+        : base(name: "rat",
+            hp: 10,
+            attackDice: new Dice(1, 6, 3),
             defenceDice: new Dice(1, 6, 1),
-            sprite:'r',
+            sprite: 'r',
             color: ConsoleColor.Red,
             y, x)
-    {}
+    { }
 
     public override void Update(LevelData levelData, MessageLog messageLog, Player player)
     {

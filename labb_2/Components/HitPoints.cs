@@ -21,7 +21,7 @@ namespace labb_2.Components
             get { return _hitPoints; }
             set
             {
-                if(value > _maxHitPoints)
+                if (value > _maxHitPoints)
                 {
                     _hitPoints = _maxHitPoints;
                 }

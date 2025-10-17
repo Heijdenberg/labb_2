@@ -44,10 +44,10 @@ internal class Player : LevelElement, ICombatant
     {
         int y = Position.Y;
         int x = Position.X;
-        
-        if(direction == ConsoleKey.UpArrow || direction == ConsoleKey.W)
+
+        if (direction == ConsoleKey.UpArrow || direction == ConsoleKey.W)
         {
-            x--; 
+            x--;
         }
         else if (direction == ConsoleKey.LeftArrow || direction == ConsoleKey.A)
         {

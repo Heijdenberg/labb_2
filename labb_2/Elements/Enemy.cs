@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace labb_2.Elements;
 
-internal abstract class Enemy: LevelElement, ICombatant
+internal abstract class Enemy : LevelElement, ICombatant
 {
     public string Name { get; }
     public HitPoints HitPoints { get; set; }
@@ -47,7 +47,7 @@ internal abstract class Enemy: LevelElement, ICombatant
     public virtual void Death(LevelData leveldata, MessageLog messageLog, ICombatant killer)
     {
         messageLog.AddMassage($"{Name} is dead, slayed by {killer.Name}");
-        leveldata.removeElement(Position.Y,Position.X);
+        leveldata.removeElement(Position.Y, Position.X);
         Renderer.AddToRemoveList(Position);
     }
 }

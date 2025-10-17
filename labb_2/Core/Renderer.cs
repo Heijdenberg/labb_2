@@ -28,7 +28,7 @@ internal class Renderer
     }
 
     public void DrawAll()
-    {      
+    {
         foreach (Position position in _removeList)
         {
             EraseAtCords(position);
@@ -37,7 +37,7 @@ internal class Renderer
 
         foreach (LevelElement element in _levelData.Elements)
         {
-            if(element is IPlayerAwareDrawable playerAwareDrawable)
+            if (element is IPlayerAwareDrawable playerAwareDrawable)
             {
                 playerAwareDrawable.Draw(_player);
             }
@@ -54,7 +54,7 @@ internal class Renderer
 
     static public void AddToRemoveList(Position position)
     {
-        _removeList.Add(new Position(position.Y,position.X));
+        _removeList.Add(new Position(position.Y, position.X));
     }
 
     static public void EraseAtCords(Position position)

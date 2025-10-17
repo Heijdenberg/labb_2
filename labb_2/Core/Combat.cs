@@ -63,6 +63,6 @@ internal class Combat
             damage = 0;
         }
 
-        return damage; 
+        return damage;
     }
 }

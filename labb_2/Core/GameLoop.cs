@@ -16,7 +16,7 @@ internal class GameLoop
     private Player _player;
     private MessageLog _messageLog;
     private Renderer _renderer;
-    private Sidebar _sidebar; 
+    private Sidebar _sidebar;
     private int _turnCount;
 
     public GameLoop(LevelData levelData, Player player, MessageLog messageLog, Sidebar sidebar)
@@ -67,7 +67,7 @@ internal class GameLoop
                                  .OfType<Enemy>()
                                  .ToList())
         {
-            if(element is Enemy enemy)
+            if (element is Enemy enemy)
             {
                 enemy.Update(_levelData, _messageLog, _player);
             }

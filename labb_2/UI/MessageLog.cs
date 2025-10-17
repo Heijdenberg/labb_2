@@ -9,7 +9,7 @@ namespace labb_2.UI;
 
 internal class MessageLog
 {
-    private List<string> _messages = new() { "", "", "", "","" };
+    private List<string> _messages = new() { "", "", "", "", "" };
     private int _maxMessages = 5;
     private int StartRow { get; set; }
     private int MaxWidth { get; set; }
@@ -22,7 +22,7 @@ internal class MessageLog
 
     public void Draw()
     {
-        Console.SetCursorPosition(0, StartRow+1);
+        Console.SetCursorPosition(0, StartRow + 1);
         string messageBox = "";
         messageBox += $"╔{new string('═', MaxWidth - 2)}╗\n";
         foreach (string message in _messages)

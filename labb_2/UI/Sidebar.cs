@@ -21,7 +21,7 @@ internal class Sidebar
     {
         _height = 5;
         _width = 24;
-        _x = levelWidth+1;
+        _x = levelWidth + 1;
         _player = player;
         _levelData = levelData;
         _enemyStartCount = levelData.GetEnemyCount();
@@ -33,9 +33,9 @@ internal class Sidebar
     }
 
     public int Width
-        {
-            get { return _width; }
-        }
+    {
+        get { return _width; }
+    }
 
     public void Draw()
     {
@@ -125,7 +125,7 @@ internal class Sidebar
         Console.WriteLine($"╚{new string('═', _width - 2)}╝");
         startLine--;
 
-        Console.SetCursorPosition(_x+2, startLine);
+        Console.SetCursorPosition(_x + 2, startLine);
         Console.WriteLine($"♦ Kill all enemies");
     }
 

@@ -24,8 +24,8 @@ internal class Program
         Sidebar sidebar = new(levelData.LevelHeight, levelData.LevelWidth, player, levelData);
         GameLoop gameLoop = new(levelData, player, messageLog, sidebar);
 
-        if(OperatingSystem.IsWindows())
-        { 
+        if (OperatingSystem.IsWindows())
+        {
             Console.BufferWidth += levelData.LevelWidth + sidebar.Width;
         }
 

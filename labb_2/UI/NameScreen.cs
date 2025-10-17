@@ -13,10 +13,10 @@ namespace labb_2.UI
         {
             DrawBox(hight, width);
 
-            Console.SetCursorPosition((width/2)-10, (hight/2));
+            Console.SetCursorPosition((width / 2) - 10, (hight / 2));
             Console.Write("Name: ");
             string name = Console.ReadLine();
-            name = char.ToUpper(name[0])+ name.Substring(1);
+            name = char.ToUpper(name[0]) + name.Substring(1);
 
             Console.Clear();
             DrawBox(hight, width);

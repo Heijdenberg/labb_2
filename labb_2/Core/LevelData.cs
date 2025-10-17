@@ -13,17 +13,17 @@ namespace labb_2.Core;
 internal class LevelData
 {
     private List<LevelElement> _elements = new();
-    private int _levelWidth =  0;
+    private int _levelWidth = 0;
     public int LevelHeight { get; set; }
-    public int LevelWidth 
+    public int LevelWidth
     {
         get
         {
             return _levelWidth;
-        } 
+        }
         set
-        { 
-            if(value> _levelWidth)
+        {
+            if (value > _levelWidth)
             {
                 _levelWidth = value;
             }
@@ -78,7 +78,7 @@ internal class LevelData
 
         for (int i = 0; i < Elements.Count; i++)
         {
-            if (Elements[i].Position.Y==y && Elements[i].Position.X == x)
+            if (Elements[i].Position.Y == y && Elements[i].Position.X == x)
             {
                 inhabitant = Elements[i];
             }
@@ -87,7 +87,7 @@ internal class LevelData
     }
     public int GetElementIndexAtPosition(int y, int x)
     {
-        int index=-1;
+        int index = -1;
 
         for (int i = 0; i < Elements.Count; i++)
         {
@@ -103,9 +103,9 @@ internal class LevelData
     {
         int enemyCount = 0;
 
-        foreach(LevelElement element in _elements)
+        foreach (LevelElement element in _elements)
         {
-            if(element is Enemy)
+            if (element is Enemy)
             {
                 enemyCount++;
             }
@@ -121,7 +121,7 @@ internal class LevelData
 
     public void SolidWalls()
     {
-        LevelElement[,] walls = new LevelElement[LevelHeight+100, LevelWidth+100];
+        LevelElement[,] walls = new LevelElement[LevelHeight + 100, LevelWidth + 100];
 
         foreach (LevelElement element in _elements.Where(e => e is Wall).Cast<Wall>())
         {
@@ -131,7 +131,7 @@ internal class LevelData
 
         foreach (LevelElement element in walls)
         {
-            if(element is not null)
+            if (element is not null)
             {
                 int wallType = 0;
                 Wall wall = (Wall)element;
