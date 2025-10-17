@@ -44,8 +44,9 @@ internal abstract class Enemy: LevelElement, ICombatant
     }
     public abstract void Update(LevelData levelData, MessageLog messageLog, Player player);
 
-    public void Death(LevelData leveldata)
+    public virtual void Death(LevelData leveldata, MessageLog messageLog, ICombatant killer)
     {
+        messageLog.AddMassage($"{Name} is dead, slayed by {killer.Name}");
         leveldata.removeElement(Position.Y,Position.X);
         Renderer.AddToRemoveList(Position);
     }

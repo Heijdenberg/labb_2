@@ -63,6 +63,15 @@ internal class Rat : Enemy, IPlayerAwareDrawable
             }
         }
     }
+
+    public override void Death(LevelData leveldata, MessageLog messageLog, ICombatant killer)
+    {
+        base.Death(leveldata, messageLog, killer);
+
+        int hpDrop = 10;
+        killer.HitPoints.HP += hpDrop;
+        messageLog.AddMassage($"You eat {Name} and got {hpDrop}HP");
+    }
 }
 
 

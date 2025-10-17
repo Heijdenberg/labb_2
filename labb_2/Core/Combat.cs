@@ -35,8 +35,7 @@ internal class Combat
 
         if (Defender.HitPoints.HP <= 0)
         {
-            messageLog.AddMassage($"{Defender.Name} is dead");
-            Defender.Death(levelData);
+            Defender.Death(levelData, messageLog, Attacker);
             return;
         }
 
@@ -51,8 +50,7 @@ internal class Combat
         messageLog.AddMassage($"{Defender.Name} Counter attacks {Attacker.Name} for {counterDamage} damage.");
         if (Attacker.HitPoints.HP <= 0)
         {
-            messageLog.AddMassage($"{Attacker.Name} is dead");
-            Attacker.Death(levelData);
+            Attacker.Death(levelData, messageLog, Defender);
             return;
         }
     }

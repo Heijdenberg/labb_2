@@ -33,8 +33,10 @@ internal class Player : LevelElement, ICombatant
     public Dice DefenceDice { get; }
     public int VisionRange { get; }
 
-    public void Death(LevelData levelData)
+    public void Death(LevelData levelData, MessageLog messageLog, ICombatant killer)
     {
+        messageLog.AddMassage($"{Name} is dead, slayed by {killer.Name}");
+        Thread.Sleep(800);
         GameOverScreen gameOver = new();
         gameOver.GameOver(levelData.LevelHeight, levelData.LevelWidth);
     }

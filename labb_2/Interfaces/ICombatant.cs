@@ -1,5 +1,6 @@
 ﻿using labb_2.Components;
 using labb_2.Core;
+using labb_2.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,5 @@ internal interface ICombatant
     HitPoints HitPoints { get; set; }
     Dice AttackDice { get; }
     Dice DefenceDice { get; }
-    public void Death(LevelData leveldata);
+    public void Death(LevelData leveldata, MessageLog messageLog, ICombatant killer);
 }
