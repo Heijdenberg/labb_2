@@ -16,9 +16,9 @@ internal class Program
         Console.OutputEncoding = Encoding.UTF8;
 
         StartUpScreen.Draw();
-
-        string path = Path.Combine("Levels", "Level1.txt");
+        
         LevelData levelData = new();
+        string path = LevelSelect.GetFilePath();
         int[] startPosition = levelData.Load(path);
         string playerName = NameScreen.SetName(levelData.LevelHeight, levelData.LevelWidth);
         Player player = new(startPosition, playerName);
