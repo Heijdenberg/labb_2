@@ -15,7 +15,7 @@ internal class Program
         Console.CursorVisible = false;
         Console.OutputEncoding = Encoding.UTF8;
 
-        StartUpScreen.Draw();
+        //StartUpScreen.Draw();
         
         LevelData levelData = new();
         string path = LevelSelect.GetFilePath();

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using labb_2.Components;
+using labb_2.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,21 +17,11 @@ internal class LevelSelect
         int levelNum = 0;
         int width = 20;
 
-        drawBox(width, files.Length);
+        Renderer.DrawBox(new Position(0,0), files.Length+2, width);
+
         levelNum = levelSelect(files);
 
         return files[levelNum];
-    }
-
-    private static void drawBox(int width, int hight)
-    {
-        Console.SetCursorPosition(0, 0);
-        Console.WriteLine($"╔{new string('═', width - 2)}╗");
-        for (int ii = 0; ii < hight; ii++)
-        {
-            Console.WriteLine($"║{new string(' ', width - 2)}║");
-        }
-        Console.WriteLine($"╚{new string('═', width - 2)}╝");
     }
     private static int levelSelect(string[] files)
     {

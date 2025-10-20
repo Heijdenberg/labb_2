@@ -1,4 +1,5 @@
-﻿using labb_2.Core;
+﻿using labb_2.Components;
+using labb_2.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace labb_2.UI;
 internal class MessageLog
 {
     private List<string> _messages = new() { "", "", "", "", "" };
-    private int _maxMessages = 5;
+    private readonly int _maxMessages = 5;
 
     public MessageLog(int atartRow, int maxWidth)
     {
@@ -23,27 +24,24 @@ internal class MessageLog
 
     public void Draw()
     {
-        Console.SetCursorPosition(0, StartRow + 1);
-        string messageBox = "";
-        messageBox += $"╔{new string('═', MaxWidth - 2)}╗\n";
+        Renderer.DrawBox(new Position(StartRow+1,0), _maxMessages+2, MaxWidth);
+
+        Console.SetCursorPosition(1, StartRow + 2);
         foreach (string message in _messages)
         {
-            string messageLine = $"║ {message}{new string(' ', MaxWidth - 2)}{new string(' ', MaxWidth - 2)}";
-            messageLine = messageLine.Substring(0, MaxWidth - 1);
-            messageLine += "║\n";
-            messageBox += messageLine;
+            Console.SetCursorPosition(2, Console.CursorTop);
+            string messageLine = $"{message}{new string(' ', MaxWidth - 2)}{new string(' ', MaxWidth - 2)}";
+            messageLine = messageLine.Substring(0, MaxWidth - 3);
+            Console.WriteLine(messageLine);
         }
-        messageBox += $"╚{new string('═', MaxWidth - 2)}╝\n";
-        Console.WriteLine(messageBox);
     }
-
     public void AddMassage(string newMessages)
     {
-        _messages.Insert(0, newMessages);
+        _messages.Add(newMessages);
 
         if (_messages.Count > _maxMessages)
         {
-            _messages.RemoveAt(_messages.Count - 1);
+            _messages.RemoveAt(0);
         }
         Draw();
         Thread.Sleep(500);

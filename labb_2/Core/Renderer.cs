@@ -62,4 +62,31 @@ internal class Renderer
         Console.SetCursorPosition(position.X, position.Y);
         Console.Write(' ');
     }
+
+    static public void DrawBox(Position startPos, int hight, int width)
+    {
+        if (width < 3)
+        {
+            width = 3;
+        }
+
+        if (hight < 3)
+        {
+            hight = 3;
+        }
+
+        Console.SetCursorPosition(startPos.Y, startPos.X);
+
+        Console.WriteLine($"╔{new string('═', width - 2)}╗");
+        for (int ii = 0; ii < hight-2; ii++)
+        {
+            Console.WriteLine($"║{new string(' ', width - 2)}║");
+        }
+        Console.WriteLine($"╚{new string('═', width - 2)}╝");
+
+    }
 }
+
+
+
+
